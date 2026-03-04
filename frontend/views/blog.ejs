@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snapped Blogs</title>
+
+    <style>
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Welcome to Snapped Blogs</h1>
+
+    <div style="display: flex; justify-content: center;">
+
+        <!-- CARD -->
+        <div style="
+                position: relative;
+                display: flex;
+                width: 70%;
+                background: white;
+                height: 50vh;
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+                transition: transform 0.5s ease-in-out;
+            " onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                <form
+                action="/blog-list/<%= blog_post.data.id %>/delete"
+                method="POST"
+                style="position: absolute; top: 15px; right: 15px; margin: 0;"
+                onsubmit="return confirm('Delete this blog post?');"
+            >
+                <button
+                type="submit"
+                style="
+                    background: #e53935;
+                    color: white;
+                    border: none;
+                    padding: 10px 14px;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    cursor: pointer;
+                "
+                >
+                Delete
+                </button>
+            </form>
+            <!-- Left Image (30%) -->
+            <div style="width: 30%; padding: 20px; margin: 20px;">
+                <img src="<%= blog_post.data.image_url %>" alt="Blog Image"
+                    style="width: 100%; height: 300px; object-fit: cover; padding: 20px;">
+            </div>
+
+            <!-- Right Content (70%) -->
+            <div style="width: 70%; padding: 25px; text-align: left;">
+
+                <!-- Title + Date -->
+                <div
+                    style="display: flex; justify-content: space-between; align-items: center; padding: 20px; margin: 20px;">
+                    <h2 style="margin: 0; color: #333;">
+                        <%= blog_post.data.name %>
+                    </h2>
+                    <span style="font-size: 14px; color: #777;">
+                        <%= blog_post.data.date %>
+                    </span>
+                </div>
+
+                <!-- Description -->
+                <p style="margin-top: 15px; color: #555; line-height: 1.6;">
+                    <%= blog_post.data.description %>
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

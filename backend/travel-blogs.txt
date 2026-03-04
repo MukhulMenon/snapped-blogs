@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "Ponducherry Trip",
+    "date": "2023-07-28",
+    "summary": "A fun and chill beach trip with sandy toes, salty breezes, and endless laughter by the waves.",
+    "description": "The beach trip was all about sun, sand, and carefree smiles. Mornings began with peaceful walks along the shoreline. Afternoons slipped by with swims in the cool blue waves. We chased the tide, built sandy memories, and soaked up the warmth. Laughter blended perfectly with the sound of the sea breeze. As evening arrived, the sky painted itself in soft sunset hues. It was the kind of escape that left our hearts light and happy.",
+    "image_url": "https://images.unsplash.com/photo-1556852542-7437e5bb45e2?q=80&w=1794&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "id": 2,
+    "name": "Matheran trip",
+    "date": "2023-10-20",
+    "summary": "A fun and chill hill station trip with cool mountain air, misty views, and cozy moments by the valley.",
+    "description": "The hill station getaway welcomed us with crisp mountain air. Rolling hills and misty mornings set a calming mood. We spent hours admiring valleys wrapped in drifting clouds. Cozy cafés became our favorite pause between explorations. Every viewpoint felt like a postcard come to life. Evenings were slow, peaceful, and wrapped in light sweaters. It was a refreshing break from the rush of everyday life.",
+    "image_url": "https://images.unsplash.com/photo-1707911909358-b39d592241ad?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "id": 3,
+    "name": "Tada falls Trek",
+    "date": "2024-02-24",
+    "summary": "A fun and chill trek to a waterfall with muddy trails, fresh forest air, and the soothing sound of rushing water.",
+    "description": "The trek began with muddy trails and excited energy. Tall trees and birdsong guided us deeper into nature. Each step brought the sound of rushing water closer. The waterfall revealed itself like a hidden treasure. Cool mist and roaring cascades made the climb worthwhile. We dipped our feet and let the moment sink in. It was a perfect blend of adventure and serenity.",
+    "image_url": "https://images.unsplash.com/photo-1701341280162-5dda3602061d?q=80&w=2232&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "id": 4,
+    "name": "Calcutta Trip",
+    "date": "2024-04-24",
+    "summary": "A fun and chill trip to Calcutta filled with tram rides, riverside sunsets, and endless adda over chai.",
+    "description": "Calcutta greeted us with its timeless charm and culture. Tram rides and colonial streets told stories of the past. We wandered through markets buzzing with life. Adda sessions over chai stretched into lazy afternoons. The food, from kathi rolls to sweets, was unforgettable. Sunsets by the Hooghly felt calm and poetic. The city left us wrapped in warmth and nostalgia.",
+    "image_url": "https://images.unsplash.com/photo-1638273349088-eec0b06c1765?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "id": 5,
+    "name": "Manali Trip",
+    "date": "2024-12-19",
+    "summary": "A fun and chill trip to Manali with snowy peaks, cozy cafés, and peaceful riverside views.",
+    "description": "Manali welcomed us with snow-kissed peaks and winding rivers. The fresh mountain air instantly cleared our minds. We explored scenic roads framed by tall pine trees. Cozy cafés offered warmth against the chilly breeze. Adventure met relaxation at every corner. Evenings were peaceful with starlit skies above. It was the perfect mountain escape to recharge and reconnect.",
+    "image_url": "https://images.unsplash.com/photo-1712388430474-ace0c16051e2?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "id": 6,
+    "name": "Trivandrum Office Trip",
+    "date": "2025-01-15",
+    "summary": "A short office trip to Trivandrum with productive meetings by day and breezy coastal vibes by evening.",
+    "description": "The Trivandrum office trip blended work with coastal calm. Productive meetings filled our mornings with fresh ideas. Team bonding grew stronger with every discussion. Evenings brought breezy walks and glimpses of the sea. Kerala’s flavors added a delightful local touch. The pace felt balanced and refreshingly smooth. It was a short yet meaningful mix of collaboration and relaxation.",
+    "image_url": "https://images.unsplash.com/photo-1614090699960-b4c81be49f3c?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "id": 7,
+    "name": "Meghalaya Trip",
+    "date": "2025-03-22",
+    "summary": "A fun and chill trip to Meghalaya with misty hills, living root bridges, and waterfalls at every turn.",
+    "description": "Meghalaya enchanted us with mist-covered hills and endless greenery. Waterfalls appeared around every turn like nature’s surprises. We crossed living root bridges woven with time. Clouds floated so low they felt within reach. The rain added a magical rhythm to our journey. Every view felt untouched and breathtakingly pure. It was a soulful retreat into nature’s finest beauty.",
+    "image_url": "https://images.unsplash.com/photo-1521437620269-f477f5437820?q=80&w=1546&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "id": 8,
+    "name": "Canada Trip",
+    "date": "2025-05-24",
+    "summary": "An office trip to Canada that blended big ideas with even bigger views, from boardrooms to snowy streets.",
+    "description": "The Canada office trip opened doors to new perspectives. Meetings were dynamic, focused, and inspiring. City skylines and crisp air framed our busy days. Team conversations flowed beyond boardroom walls. We explored a little between packed schedules. Every interaction sparked ideas and connections. It was a rewarding experience of growth and global teamwork.",
+    "image_url": "https://plus.unsplash.com/premium_photo-1694475393287-88027e0fbde4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "id": 9,
+    "name": "Lucknow Trip",
+    "date": "2025-12-04",
+    "summary": "A beautiful birthday getaway to Lucknow for my jaan, surrounded by royal charm and old-world elegance.",
+    "description": "The Lucknow trip was a heartfelt celebration of my jaan's birthday. Royal architecture set the tone for something special. We strolled through historic lanes hand in hand. Delicious sweets added flavor to the joy. Laughter echoed through every shared moment. The city’s nawabi charm made it feel grand yet intimate. I hope it became a birthday filled with love, warmth, and was unforgettable.",
+    "image_url": "https://images.unsplash.com/photo-1688287580970-70fe8e0f4bef?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  }
+]

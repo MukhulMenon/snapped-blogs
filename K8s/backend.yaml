@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: snapped-backend
+spec:
+  selector:
+    matchLabels:
+      app: snapped-backend
+  template:
+    metadata:
+      labels:
+        app: snapped-backend
+    spec:
+      containers:
+      - name: snapped-backend
+        image: docker.io/mukhulmenon/snapped-backend
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8000
+        env:
+        - name: MONGO_HOST
+          value: mongo.snapped-blogs.svc.cluster.local
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: snapped-backend
+spec:
+  selector:
+    app: snapped-backend
+  ports:
+  - port: 80
+    targetPort: 8000
+
