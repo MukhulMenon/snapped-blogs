@@ -5,6 +5,8 @@ services:
     hostname: backend-host
     volumes:
       - ./backend:/app
+    environment:
+      - MONGO_HOST=mongodb+srv://testuser:testuser@snapped-blogs.tf2wdde.mongodb.net/?appName=snapped-blogs
     ports:
       - "8000:8000"
     networks:

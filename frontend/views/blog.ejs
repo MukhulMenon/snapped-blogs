@@ -24,12 +24,22 @@
             margin-bottom: 30px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
+         .clean-link {
+            text-decoration: none;
+            color: #1e88e5;
+            font-weight: 600;
+            transition: color 0.25s ease;
+            }
+
+            .clean-link:hover {
+            color: #1565c0;
+            }
     </style>
 </head>
 
 <body>
 
-    <h1>Welcome to Snapped Blogs</h1>
+     <a href= / class="clean-link"><h1>Welcome to Snapped Blogs</h1></a>
 
     <div style="display: flex; justify-content: center;">
 
@@ -46,7 +56,7 @@
                 transition: transform 0.5s ease-in-out;
             " onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
                 <form
-                action="/blog-list/<%= blog_post.data.id %>/delete"
+                action="/blog-list/<%= blog_post.data._id %>"
                 method="POST"
                 style="position: absolute; top: 15px; right: 15px; margin: 0;"
                 onsubmit="return confirm('Delete this blog post?');"

@@ -52,6 +52,7 @@ app.get("/blog-list", async (req, res) => {
 app.get("/blog-list/:id", async (req, res) => {
   try {
     const postId = req.params.id;
+    console.log("Read more ID:", postId);
     const data = await getJson(`${BASE_URL}/blog-list/${encodeURIComponent(postId)}`);
     res.render("blog", { blog_post: data });
   } catch (error) {
@@ -83,7 +84,14 @@ app.post("/create-blog/submit", async (req, res) => {
       headers: { "Content-Type": "application/json" },
     });
 
-    return res.redirect("/blog-list/:id");
+    const newId = resp.data?.data?._id || resp.data?._id;
+
+    if (!newId) {
+      console.error("Create-blog response missing _id:", resp.data);
+      return res.status(500).send("Blog created but missing _id in response");
+    }
+
+    return res.redirect(`/blog-list/${newId}`);
   } catch (error) {
     console.error("Error creating blog:", {
       message: error.message,
@@ -97,15 +105,15 @@ app.post("/create-blog/submit", async (req, res) => {
   }
 });
 
-app.post("/blog-list/:id/delete", async (req, res) => {
+app.post("/blog-list/:id", async (req, res) => {
   try {
     const { id } = req.params;
 
-    // Call Python API to delete
-    await axios.delete(`${BASE_URL}/blog-list/${id}`);
+    // Since your Flask delete is POST (Option A)
+    await axios.post(`${BASE_URL}/blog-list/${encodeURIComponent(id)}`);
 
-    // Redirect after delete (go home or list page)
-    return res.redirect("/");
+    // Redirect back to list
+    return res.redirect("/blog-list");
   } catch (err) {
     console.error("Delete failed:", {
       message: err?.message,
