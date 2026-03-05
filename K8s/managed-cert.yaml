@@ -1,0 +1,9 @@
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: snapped-blogs-cert
+  namespace: snapped-blogs
+spec:
+  domains:
+    - snapped-blogs.mukhul-menon.com
+    - snapped-backend.mukhul-menon.com
