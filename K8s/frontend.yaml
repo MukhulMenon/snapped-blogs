@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: snapped-frontend
-        image: docker.io/mukhulmenon/snapped-frontend
+        image: docker.io/mukhulmenon/snapped-frontend:latest
         resources:
           requests:
             memory: "256Mi"

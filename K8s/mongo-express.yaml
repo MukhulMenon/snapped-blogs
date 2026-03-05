@@ -16,8 +16,11 @@ spec:
       - name: mongo-express
         image: docker.io/mongo-express
         env: 
-        - name: MONGODB_SERVER_ADDRESS
-          value: mongo.snapped-blogs.svc.cluster.local
+        - name: ME_CONFIG_MONGODB_URL
+          valueFrom:
+            secretKeyRef:
+              name: mongo-express-atlas
+              key: MONGO_HOST
         resources:
           requests:
             memory: "256Mi"
@@ -38,3 +41,4 @@ spec:
   ports:
   - port: 80
     targetPort: 8081
+  type: ClusterIP

@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: snapped-backend
-        image: docker.io/mukhulmenon/snapped-backend
+        image: docker.io/mukhulmenon/snapped-backend:latest
         resources:
           requests:
             memory: "256Mi"
@@ -25,7 +25,10 @@ spec:
         - containerPort: 8000
         env:
         - name: MONGO_HOST
-          value: mongo.snapped-blogs.svc.cluster.local
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-atlas
+              key: MONGO_HOST
 ---
 apiVersion: v1
 kind: Service
@@ -37,4 +40,5 @@ spec:
   ports:
   - port: 80
     targetPort: 8000
+  type: ClusterIP
 
