@@ -14,9 +14,10 @@ To run this project on local :
   - This will start 2 docker containers :
   - - frontend-0
     - backend-0
-  - The ports for both frontend and backend are defined in the dokce-compose file:
+  - The ports for both frontend and backend are defined in the docker-compose file:
   - - frontend - 3000
     - backend - 8000
+  - I have also defined the MongoDB Atlas URL for my project (please do not use 😰) 
 I have utilised a kubernetes cluster on Google Cloud Engine to host the project.
 
 Link to project : 
