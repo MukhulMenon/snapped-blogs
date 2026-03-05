@@ -1,47 +1,45 @@
 import json
 import os
+from connections import collection
+from bson import ObjectId
+import logging
+
+logger = logging.getLogger(__name__)
 
 def read_travel_blogs():
 
-    DATA_FILE = 'travel-blogs.txt'
+    if collection is None:
+        raise FileNotFoundError("Mongo DB collection not found")
 
-    if not os.path.exists(DATA_FILE):
-        raise FileNotFoundError("Data file not found")
+    data = list(collection.find())
 
-    with open(DATA_FILE, "r", encoding="utf-8") as file:
-        content = file.read().strip()
+    # Convert ObjectId to string for every document
+    for doc in data:
+        if "_id" in doc and isinstance(doc["_id"], ObjectId):
+            doc["_id"] = str(doc["_id"])
 
-    # Assuming the file contains a JSON array
-    data = json.loads(content)
-
-    if not isinstance(data, list):
-        raise ValueError("Invalid format: expected a list of blog objects")
-
-    return data
+    return {
+        "data": data
+    }
 
 def get_travel_blog_by_id(blog_id):
-    DATA_FILE = 'travel-blogs.txt'
+    if collection is None:
+        raise FileNotFoundError("Mongo DB collection not found")
 
-    if not os.path.exists(DATA_FILE):
-        raise FileNotFoundError("Data file not found")
+    if not ObjectId.is_valid(blog_id):
+        raise ValueError("Invalid blog ID format")
 
-    with open(DATA_FILE, "r", encoding="utf-8") as file:
-        content = file.read().strip()
+    doc = collection.find_one({"_id": ObjectId(blog_id)})
+    if not doc:
+        raise ValueError("Blog not found")
 
-    data = json.loads(content)
-
-    if not isinstance(data, list):
-        raise ValueError("Invalid format: expected a list of blog objects")
-
-    # Find blog by ID
-    for blog in data:
-        if blog.get("id") == blog_id:
-            return blog
-
-    raise ValueError(f"Blog with id {blog_id} not found")
+    doc["_id"] = str(doc["_id"])
+    return doc
 
 def add_travel_blog(new_blog):
-    DATA_FILE = 'travel-blogs.txt'
+    # ensure mongo collection exists (same pattern as read_travel_blogs)
+    if collection is None:
+        raise FileNotFoundError("Mogo DB collection not found")
 
     if not isinstance(new_blog, dict):
         raise ValueError("New blog entry must be a dictionary")
@@ -52,27 +50,8 @@ def add_travel_blog(new_blog):
     if missing:
         raise ValueError(f"Missing required fields: {', '.join(missing)}")
 
-    # load existing list (or init)
-    if os.path.exists(DATA_FILE):
-        with open(DATA_FILE, "r", encoding="utf-8") as f:
-            content = f.read().strip()
-            data = json.loads(content) if content else []
-    else:
-        data = []
-
-    if not isinstance(data, list):
-        raise ValueError("Invalid format: expected a list of blog objects")
-
-    # auto-generate next id
-    max_id = 0
-    for b in data:
-        try:
-            max_id = max(max_id, int(b.get("id", 0)))
-        except (TypeError, ValueError):
-            pass
-
-    new_entry = {
-        "id": max_id + 1,
+    # document to insert
+    doc = {
         "name": new_blog["name"],
         "summary": new_blog["summary"],
         "description": new_blog["description"],
@@ -80,33 +59,26 @@ def add_travel_blog(new_blog):
         "image_url": new_blog["image_url"],
     }
 
-    data.append(new_entry)
+    # insert into mongo
+    result = collection.insert_one(doc)
 
-    with open(DATA_FILE, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2, ensure_ascii=False)
+    # return inserted doc (make _id JSON serializable)
+    inserted = collection.find_one({"_id": result.inserted_id})
+    if inserted and isinstance(inserted.get("_id"), ObjectId):
+        inserted["_id"] = str(inserted["_id"])
 
-    return new_entry
+    return inserted
 
 def delete_travel_blog(blog_id):
-    DATA_FILE = "travel-blogs.txt"
+    if collection is None:
+        raise FileNotFoundError("Mongo DB collection not found")
 
-    if not os.path.exists(DATA_FILE):
-        raise FileNotFoundError("Data file not found")
+    if not ObjectId.is_valid(blog_id):
+        raise ValueError("Invalid blog ID format")
 
-    with open(DATA_FILE, "r", encoding="utf-8") as f:
-        content = f.read().strip()
-        data = json.loads(content) if content else []
+    result = collection.delete_one({"_id": ObjectId(blog_id)})
 
-    if not isinstance(data, list):
-        raise ValueError("Invalid format: expected a list of blog objects")
+    if result.deleted_count == 0:
+        raise ValueError("Blog not found")
 
-    original_len = len(data)
-    data = [b for b in data if str(b.get("id")) != str(blog_id)]
-
-    if len(data) == original_len:
-        raise ValueError(f"Blog with id {blog_id} not found")
-
-    with open(DATA_FILE, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2, ensure_ascii=False)
-
-    return {"deleted_id": blog_id}
+    return True

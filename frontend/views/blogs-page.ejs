@@ -120,13 +120,23 @@
             opacity: 0.85;
             margin-top: 10px;
         }
+        .clean-link {
+            text-decoration: none;
+            color: #1e88e5;
+            font-weight: 600;
+            transition: color 0.25s ease;
+            }
+
+            .clean-link:hover {
+            color: #1565c0;
+            }
     </style>
 </head>
 
 <body>
-    <h1>Welcome to Snapped Blogs</h1>
+   <a href= / class="clean-link"><h1>Welcome to Snapped Blogs</h1></a>
 
-    <% if (!blogs || blogs.length===0) { %>
+    <% if (!blogs.data || blogs.data.length===0) { %>
         <div class="empty">
             <h2>No blogs found</h2>
             <div class="note">Make sure your backend is running and /api/blog-posts returns data.</div>
@@ -134,7 +144,7 @@
         <% } else { %>
 
             <div class="grid">
-                <% blogs.forEach((blog)=> { %>
+                <% blogs.data.forEach((blog)=> { %>
                     <div class="card">
                         
                         <img src="<%= blog.image_url %>" alt="Blog Image"
@@ -151,7 +161,7 @@
                         <div class="date">
                             <%= blog.date %>
                         </div>
-                        <a href="/blog-list/<%= blog.id %>" class="btn">Read More</a>
+                        <a href="/blog-list/<%= blog._id %>" class="btn">Read More</a>
                     </div>
                     <% }) %>
             </div>

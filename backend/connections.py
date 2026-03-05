@@ -3,7 +3,7 @@ from os import environ
 
 MONGO_HOST = environ.get('MONGO_HOST','localhost')
 
-client = MongoClient(MONGO_HOST,27017)
+client = MongoClient(MONGO_HOST)
 
 db = client['snapped_blogs']
 
