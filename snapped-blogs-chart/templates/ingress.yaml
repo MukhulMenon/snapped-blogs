@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: snapped-blogs
+  namespace: snapped-blogs
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+    networking.gke.io/managed-certificates: "snapped-blogs-cert"
+    kubernetes.io/ingress.allow-http: "true"
+spec:
+  ingressClassName: gce
+  rules:
+  - host: {{ index .Values "frontend-host" }}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: snapped-frontend
+            port:
+              number: 80
+
+  - host: {{index .Values "backend-host"}}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: snapped-backend
+            port:
+              number: 80

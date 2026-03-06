@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: snapped-frontend
+spec:
+  selector:
+    matchLabels:
+      app: snapped-frontend
+  template:
+    metadata:
+      labels:
+        app: snapped-frontend
+    spec:
+      containers:
+      - name: snapped-frontend
+        image: docker.io/mukhulmenon/snapped-frontend:latest
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000
+        env:
+        - name: BACKEND_URL
+          value: http://snapped-backend.snapped-blogs.svc.cluster.local
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: snapped-frontend
+spec:
+  selector:
+    app: snapped-frontend
+  ports:
+  - port: 80
+    targetPort: 3000
+  type: ClusterIP
+
