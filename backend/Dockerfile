@@ -3,10 +3,10 @@ ADD requirements.txt /app/requirements.txt
 
 RUN pip install -r /app/requirements.txt
 
-ADD . /app/backend
+ADD . /app
 
 WORKDIR /app
 
 ENTRYPOINT [ "python" ]
 
-CMD [ "backend/app.py" ]
+CMD [ "app.py" ]

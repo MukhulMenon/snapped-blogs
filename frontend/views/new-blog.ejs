@@ -113,6 +113,109 @@
             .clean-link:hover {
             color: #1565c0;
             }
+            .upload-wrapper {
+                margin-top: 10px;
+            }
+            .upload-box {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 160px;
+                border: 2px dashed #667eea;
+                border-radius: 12px;
+                background: #f8f9ff;
+                cursor: pointer;
+                transition: all 0.4s ease;
+                text-align: center;
+                font-weight: 600;
+                color: #555;
+            }
+
+            .upload-box.shrink {
+                height: 80px;
+                font-size: 0.9rem;
+            }
+
+            .upload-icon {
+                font-size: 30px;
+                margin-bottom: 8px;
+                transition: all 0.3s ease;
+            }
+
+            .upload-box.shrink .upload-icon {
+                font-size: 20px;
+                margin-bottom: 4px;
+            }
+            .preview-container {
+                margin-top: 16px;
+                display: none;
+                justify-content: center;
+                animation: fadeIn 0.35s ease forwards;
+            }
+
+            .preview-card {
+                width: 100%;
+                max-width: 360px;          /* ✅ keeps it from becoming huge */
+                border-radius: 16px;
+                overflow: hidden;
+                background: rgba(255, 255, 255, 0.92);
+                box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+                border: 1px solid rgba(0, 0, 0, 0.08);
+                backdrop-filter: blur(8px);
+            }
+
+            .preview-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 10px 12px;
+                background: rgba(102, 126, 234, 0.12);
+                border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            }
+
+            .preview-title {
+                font-size: 0.9rem;
+                font-weight: 700;
+                color: #2b2b2b;
+            }
+
+            .remove-btn {
+                width: 34px;
+                height: 34px;
+                border: none;
+                border-radius: 10px;
+                cursor: pointer;
+                font-size: 12px;
+                font-weight: 800;
+                color: #222;
+                background: rgba(255, 255, 255, 0.9);
+                box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+                transition: transform 0.2s ease, filter 0.2s ease;
+            }
+
+            .remove-btn:hover {
+                transform: translateY(-1px);
+                filter: brightness(0.95);
+            }
+
+            .preview-body {
+                padding: 12px;
+            }
+
+            .preview-body img {
+                width: 100%;
+                height: 210px;             
+                object-fit: cover;         
+                border-radius: 14px;
+                display: block;
+                box-shadow: 0 10px 22px rgba(0, 0, 0, 0.14);
+            }
+
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(8px); }
+                to   { opacity: 1; transform: translateY(0); }
+            }
     </style>
 </head>
 
@@ -122,7 +225,7 @@
         <div class="card">
             <h1>Create Blog Post</h1>
 
-            <form action="/create-blog/submit" method="POST">
+            <form action="/create-blog/submit" method="POST"enctype="multipart/form-data">
 
                 <div>
                     <label for="name">Title</label>
@@ -144,17 +247,68 @@
                     <input type="date" id="date" name="date" required>
                 </div>
 
-                <div>
-                    <label for="image_url">Image URL</label>
-                    <input type="url" id="image_url" name="image_url" required>
+                <div id="upload-section">
+                    <label>Upload Image</label>
+
+                    <label for="image" class="upload-box">
+                        <span class="upload-icon">📷</span>
+                        <span id="upload-text">Click to upload image</span>
+                        <input type="file" id="image" name="image" accept="image/*" required hidden>
+                    </label>
                 </div>
+
+                    <div class="preview-container" id="preview-container" style="display:none;">
+                        <div class="preview-card">
+                            <div class="preview-header">
+                            <div class="preview-title">Selected image</div>
+                            <button type="button" class="remove-btn" id="remove-image">✕</button>
+                            </div>
+                            <div class="preview-body">
+                            <img id="image-preview" alt="Image preview" />
+                            </div>
+                        </div>
+                        </div>
 
                 <button type="submit">Create Blog Post</button>
 
             </form>
         </div>
     </div>
+    <script>
+        const fileInput = document.getElementById("image");
+        const uploadSection = document.getElementById("upload-section");
+        const previewContainer = document.getElementById("preview-container");
+        const previewImage = document.getElementById("image-preview");
+        const removeBtn = document.getElementById("remove-image");
 
+        fileInput.addEventListener("change", function (event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+            previewImage.src = e.target.result;
+
+            // 🔥 Hide upload section
+            uploadSection.style.display = "none";
+
+            // 🔥 Show preview
+            previewContainer.style.display = "flex";
+            };
+            reader.readAsDataURL(file);
+        });
+
+        removeBtn.addEventListener("click", function () {
+            fileInput.value = "";
+            previewImage.src = "";
+
+            // 🔥 Hide preview
+            previewContainer.style.display = "none";
+
+            // 🔥 Show upload section again
+            uploadSection.style.display = "block";
+        });
+    </script>
 </body>
 
 </html>
