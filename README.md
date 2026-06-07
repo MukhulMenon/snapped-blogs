@@ -23,5 +23,5 @@ To run this project on local :
 ### I have utilised a kubernetes cluster on Google Cloud Engine to host the project.
 
 Link to project : 
-[snapped-blogs.mukhul-menon.com](https://snapped-blogs.mukhul-menon.com)
+[snapped-blogs.mukhul-menon.com](https://snapped-blogs.mukhul-menon.com) down due to payment issue 😅
 
